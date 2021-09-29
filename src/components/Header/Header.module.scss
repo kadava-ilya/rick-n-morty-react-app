@@ -1,0 +1,67 @@
+//MIXINS
+@mixin df($jc, $ai) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+.header {
+  width: 100%;
+  height: 100px;
+
+  //mixin
+  @include df(space-between, center);
+
+  &_nav {
+    margin: 0;
+    width: 650px;
+    display: flex;
+    align-items: center;
+  }
+
+  &_items {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+    @include df(space-between, center);
+  }
+
+  &_item {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+
+    & a {
+      text-decoration: none;
+    }
+  }
+}
+
+.logo {
+  margin: 0;
+  width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &_img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.container_header {
+  width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active_link {
+  // color: rgb(30, 255, 0);
+  color: rgb(38, 255, 0);
+  transition: 0.3s linear;
+}

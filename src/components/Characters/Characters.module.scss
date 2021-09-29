@@ -1,0 +1,17 @@
+* {
+  color: white;
+}
+
+.characters_holder {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.characters_title {
+  display: block;
+  margin: 20px 0 20px;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+}
