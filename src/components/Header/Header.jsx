@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from "react-router-dom";
 
 import styles from './Header.module.scss'
-import logo from '../../img/logo2.png'
+import logo from '../../assets/img/logo2.png'
 
 
 const Header = () => {
@@ -14,8 +14,8 @@ const Header = () => {
                         <img className={styles.logo_img} src={logo} alt="Rick and Morty" />
                     </div>
                 </NavLink>
-                <div className={styles.header_nav}>
-                    <ul className={styles.header_items}>
+                <nav className={styles.header_nav}>
+                    <ul className={styles.header_list}>
                         <li className={styles.header_item}>
                             <NavLink to='characters' activeClassName={styles.active_link}>
                                 Characters
@@ -37,7 +37,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                     </ul>
-                </div>
+                </nav>
             </div>
         </header >
     )

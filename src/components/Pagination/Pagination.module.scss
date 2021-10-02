@@ -1,0 +1,38 @@
+@import "../../styles/mixins.scss";
+
+//PAGINATION
+.pagination {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 30px;
+  width: 150px;
+  padding: 0;
+  font-size: 20px;
+
+  //mixin
+  @include df(space-between, center);
+
+  &_item {
+    width: 40px;
+    height: 40px;
+    // background-color: #fff;
+    list-style: none;
+  }
+
+  &_link {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid rgb(81, 255, 0);
+    cursor: pointer;
+    font-size: 10px;
+    text-align: center;
+    font-size: 12px;
+
+    &:hover {
+      border-color: white;
+    }
+  }
+}

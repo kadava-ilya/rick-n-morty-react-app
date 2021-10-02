@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-import { CHARACTERS_API } from '../../../api/api'
 import styles from './Character.module.scss'
 
 

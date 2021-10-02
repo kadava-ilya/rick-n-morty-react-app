@@ -1,63 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import { CHARACTERS_API } from '../../api/api';
+//API from api.js
+import { CHARACTERS_API } from "../../api/api";
+
+//components
 import styles from './Characters.module.scss';
 import Character from './Character/Character';
-import Pagination from '../Pagination';
+import Pagination from '../Pagination/Pagination';
 import Modal from '../Modal/Modal'
 
 
 const Characters = ({
-    prev,
-    next,
-    onPrev,
-    onNext,
-    characters,
-    charPageCounter,
-    pages,
     modalActive,
     setModalActive }) => {
 
-    // const [characters, setCharacters] = useState(null);
+    const [characters, setCharacters] = useState(null);
+    const [charInfo, setCharInfo] = useState({});
+    const [charPageCounter, setCharPageCounter] = useState(1);
 
-    // useEffect(() => {
-    //     try {
-    //         axios(CHARACTERS_API)
-    //             .then(result => {
-    //                 console.log(result.data.results);
-    //                 setCharacters(result.data.results);
-    //             });
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //     }
-    // }, [])
+    //getting characters
+    const fetchCharacters = (url) => {
+        axios(url)
+            .then((data) => {
+                setCharacters(data.data.results);
+                setCharInfo(data.data.info);
+            })
+            .catch((error) => console.log(error));
+    };
 
+    const onPrev = () => {
+        if (charPageCounter > 1) {
+            fetchCharacters(charInfo.prev);
+            setCharPageCounter(charPageCounter - 1);
+        }
+    };
+    const onNext = () => {
+        if (charPageCounter < charInfo.pages) {
+            fetchCharacters(charInfo.next);
+            setCharPageCounter(charPageCounter + 1);
+        }
+    };
 
+    useEffect(() => {
+        fetchCharacters(CHARACTERS_API);
+    }, []);
 
     return (
-        <div className="container">
-            <div className={styles.characters_title}>Characters</div>
+        <section className={styles.characters}>
+            <div className="container">
+                <h2 className={styles.characters_title}>Characters</h2>
 
-            <div className={styles.characters_holder}>
-                {characters && characters.map(character =>
-                    <Character
-                        key={character.id}
-                        character={character}
-                        setModalActive={setModalActive} />)}
-                <Modal
-                    modalActive={modalActive}
-                    setModalActive={setModalActive} />
-                <Pagination
-                    prev={prev}
-                    next={next}
-                    onPrev={onPrev}
-                    onNext={onNext}
-                    pages={pages}
-                    counter={charPageCounter} />
+                <div className={styles.characters_holder}>
+                    {characters && characters.map(character =>
+                        <Character
+                            key={character.id}
+                            character={character}
+                            setModalActive={setModalActive} />)}
+                    <Modal
+                        modalActive={modalActive}
+                        setModalActive={setModalActive} />
+                    <Pagination
+                        prev={charInfo.prev}
+                        next={charInfo.next}
+                        onPrev={onPrev}
+                        onNext={onNext}
+                        pages={charInfo.pages}
+                        counter={charPageCounter} />
+                </div>
             </div>
-        </div>
+        </section>
     )
 }
 

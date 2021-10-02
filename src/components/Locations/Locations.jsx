@@ -5,7 +5,7 @@ import { LOCATIONS_API } from '../../api/api'
 
 import styles from './Locations.module.scss'
 import Modal from '../Modal/Modal';
-import Pagination from '../Pagination'
+import Pagination from '../Pagination/Pagination'
 
 
 const Locations = ({ modalActive, setModalActive }) => {
@@ -41,9 +41,9 @@ const Locations = ({ modalActive, setModalActive }) => {
     const makeColumns = (row) => {
         return (
             [
-                <td className='table_row_item'>{row.id} </td>,
-                <td className='table_row_item'>{row.name} </td>,
-                <td className='table_row_item'>{row.type} </td>
+                <td className={styles.table_row_item}>{row.id} </td>,
+                <td className={styles.table_row_item}>{row.name} </td>,
+                <td className={styles.table_row_item}>{row.type} </td>
             ]
         )
     }
@@ -52,7 +52,7 @@ const Locations = ({ modalActive, setModalActive }) => {
     tableTemplate = locations && locations.map((row, i) => {
         return <tr
             key={i}
-            className='table_row'
+            className={styles.table_row}
             onClick={() => setModalActive(true)}>{makeColumns(row)}</tr>
     })
 
@@ -61,9 +61,9 @@ const Locations = ({ modalActive, setModalActive }) => {
     }, []);
 
     return (
-        <div className={styles.locations}>
+        <section className={styles.locations}>
             <div className="container">
-                <h2 className="component_title">Locations</h2>
+                <h2 className={styles.locations_title}>Locations</h2>
                 <Modal
                     modalActive={modalActive}
                     setModalActive={setModalActive} />
@@ -89,14 +89,13 @@ const Locations = ({ modalActive, setModalActive }) => {
 
             </div>
             <Pagination
-                className='pagination'
                 prev={locationsInfo.prev}
                 next={locationsInfo.next}
                 onPrev={onPrev}
                 onNext={onNext}
                 pages={locationsInfo.pages}
                 counter={locationsCounter} />
-        </div>
+        </section>
     )
 }
 

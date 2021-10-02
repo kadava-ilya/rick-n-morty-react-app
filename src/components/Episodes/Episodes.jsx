@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { EPISODES_API } from '../../api/api';
+
+//components
 import styles from './Episodes.module.scss';
-import Pagination from "../Pagination";
+import Pagination from "../Pagination/Pagination";
 import Modal from '../Modal/Modal'
 
 const Episodes = ({ modalActive, setModalActive }) => {
@@ -13,24 +15,9 @@ const Episodes = ({ modalActive, setModalActive }) => {
     const [episodeCounter, setEpisodeCounter] = useState(1);
 
     //getting episodes
-    // useEffect(() => {
-    //     try {
-    //         axios(EPISODES_API)
-    //             .then(result => {
-    //                 console.log(result.data);
-    //                 setEpisodes(result.data.results);
-    //                 setEpisodesInfo(result.data.info);
-    //             });
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //     }
-    // }, [])
-
     const fetchEpisodes = (url) => {
         axios(url)
             .then(data => {
-                console.log(data)
                 setEpisodes(data.data.results);
                 setEpisodesInfo(data.data.info);
             })
@@ -55,19 +42,19 @@ const Episodes = ({ modalActive, setModalActive }) => {
     const makeColumns = (row) => {
         return (
             [
-                <td className='table_row_item'>{row.id} </td>,
-                <td className='table_row_item'>{row.name} </td>,
-                <td className='table_row_item'>{row.air_date} </td>
+                <td className={styles.table_row_item}>{row.id} </td>,
+                <td className={styles.table_row_item}>{row.name} </td>,
+                <td className={styles.table_row_item}>{row.air_date} </td>
             ]
         )
     }
 
-
     tableTemplate = episodes && episodes.map((row, i) => {
         return <tr
             key={i}
-            className='table_row'
-            onClick={() => setModalActive(true)}> {makeColumns(row)}</tr >
+            className={styles.table_row}
+            onClick={() => setModalActive(true)}> {makeColumns(row)}
+        </tr >
     })
 
     useEffect(() => {
@@ -75,9 +62,9 @@ const Episodes = ({ modalActive, setModalActive }) => {
     }, []);
 
     return (
-        <div className={styles.episodes}>
+        <section className={styles.episodes}>
             <div className="container">
-                <div className="component_title">Episodes</div>
+                <div className={styles.episodes_title}>Episodes</div>
                 <table>
                     <thead>
                         <tr>
@@ -96,7 +83,6 @@ const Episodes = ({ modalActive, setModalActive }) => {
                     setModalActive={setModalActive} />
 
                 <Pagination
-                    className='pagination'
                     prev={episodesInfo.prev}
                     next={episodesInfo.next}
                     onPrev={onPrev}
@@ -105,7 +91,7 @@ const Episodes = ({ modalActive, setModalActive }) => {
                     counter={episodeCounter} />
 
             </div>
-        </div>
+        </section>
     )
 }
 
