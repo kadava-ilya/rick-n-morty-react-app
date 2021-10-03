@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './Pagination.module.scss'
 
-const Pagination = ({ prev, next, onPrev, onNext, counter, pages }) => {
+export const Pagination = ({ prev, next, onPrev, onNext, counter, pages }) => {
 
     const handlePrev = () => {
         onPrev();
@@ -34,5 +34,3 @@ const Pagination = ({ prev, next, onPrev, onNext, counter, pages }) => {
         </nav>
     )
 }
-
-export default Pagination

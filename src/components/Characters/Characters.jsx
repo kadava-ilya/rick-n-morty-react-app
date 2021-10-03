@@ -6,12 +6,13 @@ import { CHARACTERS_API } from "../../api/api";
 
 //components
 import styles from './Characters.module.scss';
-import Character from './Character/Character';
-import Pagination from '../Pagination/Pagination';
-import Modal from '../Modal/Modal'
+
+import { Character } from './Character/Character';
+import { Pagination } from '../Pagination/Pagination';
+import { Modal } from '../Modal/Modal'
 
 
-const Characters = ({
+export const Characters = ({
     modalActive,
     setModalActive }) => {
 
@@ -72,5 +73,3 @@ const Characters = ({
         </section>
     )
 }
-
-export default Characters;

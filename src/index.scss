@@ -1,3 +1,5 @@
+@import "./styles/variables.scss";
+
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -24,7 +26,7 @@ body {
 }
 
 .container {
-  width: 1300px;
+  width: $container-width;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

@@ -6,7 +6,7 @@ import { selectEpisodes, loadEpisodes } from '../../store/slices/episodesSlice'
 //styles
 import styles from './Episodes.module.scss';
 
-const EpisodesRedux = () => {
+export const EpisodesRedux = () => {
 
     const dispatch = useDispatch();
 
@@ -62,5 +62,3 @@ const EpisodesRedux = () => {
         </section>
     )
 }
-
-export default EpisodesRedux;

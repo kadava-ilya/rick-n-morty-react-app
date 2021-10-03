@@ -4,11 +4,11 @@ import axios from 'axios';
 import { LOCATIONS_API } from '../../api/api'
 
 import styles from './Locations.module.scss'
-import Modal from '../Modal/Modal';
-import Pagination from '../Pagination/Pagination'
+import { Modal } from '../Modal/Modal';
+import { Pagination } from '../Pagination/Pagination'
 
 
-const Locations = ({ modalActive, setModalActive }) => {
+export const Locations = ({ modalActive, setModalActive }) => {
 
     const [locations, setLocations] = useState(null);
     const [locationsInfo, setLocationsInfo] = useState({});
@@ -98,5 +98,3 @@ const Locations = ({ modalActive, setModalActive }) => {
         </section>
     )
 }
-
-export default Locations;

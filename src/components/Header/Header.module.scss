@@ -1,10 +1,10 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
 .header {
   width: 100%;
   padding: 15px 0;
 
-  //mixin
   @include df(space-between, center);
 
   &_nav {
@@ -48,7 +48,7 @@
 }
 
 .container_header {
-  width: 1300px;
+  width: $container-width;
   margin: 0 auto;
 
   @include df(space-between, center);

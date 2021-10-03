@@ -5,10 +5,10 @@ import { EPISODES_API } from '../../api/api';
 
 //components
 import styles from './Episodes.module.scss';
-import Pagination from "../Pagination/Pagination";
-import Modal from '../Modal/Modal'
+import { Pagination } from "../Pagination/Pagination";
+import { Modal } from '../Modal/Modal'
 
-const Episodes = ({ modalActive, setModalActive }) => {
+export const Episodes = ({ modalActive, setModalActive }) => {
 
     const [episodes, setEpisodes] = useState(null);
     const [episodesInfo, setEpisodesInfo] = useState({});
@@ -94,5 +94,3 @@ const Episodes = ({ modalActive, setModalActive }) => {
         </section>
     )
 }
-
-export default Episodes;

@@ -1,4 +1,5 @@
 @import "../../../styles/mixins.scss";
+@import "../../../styles/variables.scss";
 
 .character {
   max-width: 85px;
@@ -10,7 +11,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid rgb(81, 255, 0);
+  border: $card-border;
   cursor: pointer;
   transition: all 0.1s linear;
 
@@ -22,7 +23,7 @@
   &_img {
     width: 100%;
     height: auto;
-    border: 1px solid rgb(81, 255, 0);
+    border: $card-border;
     border-radius: 5px;
   }
 
@@ -34,7 +35,6 @@
     text-align: center;
     font-size: 13px;
 
-    //mixin
     @include df(center, center);
   }
 }

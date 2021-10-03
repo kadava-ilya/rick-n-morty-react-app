@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ modalActive, setModalActive }) => {
+export const Modal = ({ modalActive, setModalActive }) => {
 
     return (
         <div className={modalActive ? 'modal active' : 'modal'} onClick={() => setModalActive(false)}>
@@ -13,5 +13,3 @@ const Modal = ({ modalActive, setModalActive }) => {
         </div>
     )
 }
-
-export default Modal

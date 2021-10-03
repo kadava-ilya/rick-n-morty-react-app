@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Main.module.scss'
 
 
-const Main = () => {
+export const Main = () => {
     return (
         <main className={styles.main}>
             <div className="container">
@@ -13,5 +13,3 @@ const Main = () => {
         </main>
     )
 }
-
-export default Main;

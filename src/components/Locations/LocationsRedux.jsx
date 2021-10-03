@@ -5,7 +5,7 @@ import { selectLocations, loadLocations } from '../../store/slices/locationsSlic
 
 import styles from './Locations.module.scss'
 
-const LocationsRedux = () => {
+export const LocationsRedux = () => {
 
     const dispatch = useDispatch();
     const { loading, data } = useSelector(selectLocations);
@@ -59,5 +59,3 @@ const LocationsRedux = () => {
         </section>
     )
 }
-
-export default LocationsRedux;

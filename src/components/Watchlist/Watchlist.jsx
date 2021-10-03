@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './Watchlist.module.scss'
 
-const Watchlist = () => {
+export const Watchlist = () => {
     return (
         <section className={styles.watchlist}>
             <div className="container">
@@ -11,5 +11,3 @@ const Watchlist = () => {
         </section>
     )
 }
-
-export default Watchlist

@@ -1,6 +1,5 @@
 @import "../../styles/mixins.scss";
 
-//PAGINATION
 .pagination {
   position: absolute;
   left: 50%;
@@ -10,13 +9,11 @@
   padding: 0;
   font-size: 20px;
 
-  //mixin
   @include df(space-between, center);
 
   &_item {
     width: 40px;
     height: 40px;
-    // background-color: #fff;
     list-style: none;
   }
 

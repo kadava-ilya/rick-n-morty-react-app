@@ -5,9 +5,9 @@ import { loadCharacters, selectCharacters } from '../../store/slices/charactersS
 
 //components
 import styles from './Characters.module.scss';
-import Character from './Character/Character';
+import { Character } from './Character/Character';
 
-const CharactersRedux = () => {
+export const CharactersRedux = () => {
 
     const dispatch = useDispatch();
     const { loading, data } = useSelector(selectCharacters);
@@ -36,5 +36,3 @@ const CharactersRedux = () => {
         </section>
     )
 }
-
-export default CharactersRedux;

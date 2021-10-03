@@ -2,10 +2,10 @@ import React from 'react'
 import { NavLink } from "react-router-dom";
 
 import styles from './Header.module.scss'
-import logo from '../../assets/img/logo2.png'
+import logo from '../../assets/img/logo.png'
 
 
-const Header = () => {
+export const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.container_header}>
@@ -42,5 +42,3 @@ const Header = () => {
         </header >
     )
 }
-
-export default Header;

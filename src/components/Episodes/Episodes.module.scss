@@ -1,10 +1,12 @@
+@import "../../styles/variables.scss";
+
 .episodes {
   position: relative;
   width: 100vw;
   margin: 0;
   padding: 0 0 120px;
   height: 100%;
-  background: linear-gradient(to bottom, #33ccff00 0%, #000000 70%);
+  background: $component-bg-gradient;
 
   &_title {
     display: block;
@@ -16,7 +18,6 @@
   }
 }
 
-//TABLE
 table {
   width: 800px;
   margin: 0 auto;
@@ -24,7 +25,7 @@ table {
 
   thead {
     width: 100%;
-    height: 40px;
+    min-height: 40px;
     background-color: rgba(38, 255, 0, 0.6);
   }
 }
@@ -32,7 +33,7 @@ table {
 .table_row {
   height: 30px;
   &:hover {
-    background-color: rgba(38, 255, 0, 0.1);
+    background-color: $table-row-hover-bgc;
   }
 
   &_item {
