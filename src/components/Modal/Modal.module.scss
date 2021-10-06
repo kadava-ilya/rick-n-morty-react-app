@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -5,13 +7,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   pointer-events: none;
   transition: all 0.2s linear;
   z-index: 10;
+
+  @include df(center, center);
 
   &_close {
     position: absolute;

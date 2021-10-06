@@ -9,7 +9,6 @@ import { Episodes } from "./components/Episodes/Episodes";
 import { Locations } from "./components/Locations/Locations";
 import { Watchlist } from "./components/Watchlist/Watchlist";
 
-
 //Redux components
 import { CharactersRedux } from "./components/Characters/Characters-redux";
 import { EpisodesRedux } from "./components/Episodes/Episodes-redux";
@@ -27,12 +26,16 @@ function App() {
       </Route>
 
       <Route path="/characters" exact>
-        <Characters modalActive={modalActive} setModalActive={setModalActive} />
+        <Characters
+          modalActive={modalActive}
+          setModalActive={setModalActive} />
       </Route>
 
       {/* Redux */}
       <Route path="/characters-redux" exact>
-        <CharactersRedux />
+        <CharactersRedux
+          modalActive={modalActive}
+          setModalActive={setModalActive} />
       </Route>
 
       <Route path="/episodes" exact>

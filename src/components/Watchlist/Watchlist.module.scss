@@ -1,1 +1,138 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
+//Watchlist component
+.watchlist_main {
+  width: 100vw;
+  height: auto;
+}
+
+.container {
+  @include df(center, center);
+  flex-direction: column;
+}
+
+.component_title {
+  display: block;
+  margin: 20px 0 20px;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+//Form component
+.form_group {
+  position: relative;
+  display: flex;
+}
+
+.form_input {
+  min-width: 400px;
+  min-height: 30px;
+  padding: 5px 10px;
+  outline: none;
+  font-size: 17px;
+  background-color: transparent;
+  border: $card-border;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.small {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.form_btn {
+  padding: 0 20px;
+  cursor: pointer;
+  background-color: $green;
+  color: black;
+  border: none;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+//Lists component
+.watchlist {
+  //   background-color: red;
+  @include df(center, center);
+
+  &_list {
+    list-style: none;
+    margin-top: 30px;
+    padding: 0 30px;
+  }
+}
+
+//ListItem component
+.list_item {
+  background-color: $green;
+  min-width: 500px;
+  margin: 15px 0;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  color: black;
+
+  @include df(space-between, center);
+
+  del {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.list_buttons {
+  @include df(space-between, center);
+}
+
+.list_btn_del,
+.list_btn_check {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.1s linear;
+
+  i {
+    color: black;
+    transition: all 0.1s linear;
+  }
+
+  &:hover {
+    border: 1px solid white;
+
+    i {
+      color: white;
+    }
+  }
+}
+
+.list_btn_del {
+  margin-right: 5px;
+}
+
+//Empty watchlist
+.empty_watchlist {
+  @include df(center, center);
+  flex-direction: column;
+  padding: 20px 0;
+
+  i {
+    font-size: 50px;
+    margin-top: 20px;
+  }
+
+  &_text {
+    margin: 10px 0;
+  }
+}

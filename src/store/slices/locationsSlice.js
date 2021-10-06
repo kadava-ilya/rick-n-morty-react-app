@@ -20,7 +20,7 @@ const locationsSlice = createSlice({
 const { loading, locations } = locationsSlice.actions;
 
 export const loadLocations = (dispatch) => {
-  dispatch(loading);
+  dispatch(loading());
 
   const promises = [getLocations()];
 

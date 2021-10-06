@@ -19,10 +19,10 @@ const charactersSlice = createSlice({
 
 const { loading, characters } = charactersSlice.actions;
 
-export const loadCharacters = (dispatch) => {
-  dispatch(loading);
+export const loadCharacters = (dispatch, filters) => {
+  dispatch(loading());
 
-  const promises = [getCharacters()];
+  const promises = [getCharacters(filters)];
 
   return Promise.all(promises).then((list) => {
     dispatch(characters(list[0]));

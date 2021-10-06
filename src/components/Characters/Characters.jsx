@@ -20,6 +20,12 @@ export const Characters = ({
     const [charInfo, setCharInfo] = useState({});
     const [charPageCounter, setCharPageCounter] = useState(1);
 
+    const [getPopupInfo, setGetPopupInfo] = useState([]);
+
+    const getCharInfoModal = (id, img, name, gender, species, status) => {
+        setGetPopupInfo([id, img, name, gender, species, status]);
+    }
+
     //getting characters
     const fetchCharacters = (url) => {
         axios(url)
@@ -57,10 +63,12 @@ export const Characters = ({
                         <Character
                             key={character.id}
                             character={character}
-                            setModalActive={setModalActive} />)}
+                            setModalActive={setModalActive}
+                            getCharInfoModal={getCharInfoModal} />)}
                     <Modal
                         modalActive={modalActive}
-                        setModalActive={setModalActive} />
+                        setModalActive={setModalActive}
+                        getPopupInfo={getPopupInfo} />
                     <Pagination
                         prev={charInfo.prev}
                         next={charInfo.next}

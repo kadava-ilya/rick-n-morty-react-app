@@ -1,22 +1,59 @@
+@import "../../styles/mixins.scss";
+
 .characters {
   position: relative;
   width: 100vw;
   margin: 0;
   padding: 0 0 100px;
-  min-height: 70vh;
+  min-height: 80vh;
   // background: $component-bg-gradient;
+
+  &_holder {
+    @include df(center, center);
+    flex-wrap: wrap;
+  }
+
+  &_title {
+    display: block;
+    margin: 20px 0 20px;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 }
 
-.characters_holder {
+.filter_section {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-.characters_title {
-  display: block;
-  margin: 20px 0 20px;
-  font-size: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 700;
+.filter_title {
+  font-size: 15px;
+}
+
+.filter_list {
+  display: flex;
+  list-style: none;
+  // background-color: green;
+  padding: 0;
+}
+
+.filter_item {
+  margin-left: 50px;
+
+  & select {
+    background-color: transparent;
+    border: 1px solid green;
+    margin-left: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    & option {
+      background-color: rgba(75, 189, 0, 0.822);
+      color: black;
+      padding: 10px;
+    }
+  }
 }
