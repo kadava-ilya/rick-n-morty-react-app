@@ -4,11 +4,10 @@ import axios from 'axios';
 import { LOCATIONS_API } from '../../api/api'
 
 import styles from './Locations.module.scss'
-import { Modal } from '../Modal/Modal';
 import { Pagination } from '../Pagination/Pagination'
 
 
-export const Locations = ({ modalActive, setModalActive }) => {
+export const Locations = () => {
 
     const [locations, setLocations] = useState(null);
     const [locationsInfo, setLocationsInfo] = useState({});
@@ -52,8 +51,7 @@ export const Locations = ({ modalActive, setModalActive }) => {
     tableTemplate = locations && locations.map((row, i) => {
         return <tr
             key={i}
-            className={styles.table_row}
-            onClick={() => setModalActive(true)}>{makeColumns(row)}</tr>
+            className={styles.table_row}>{makeColumns(row)}</tr>
     })
 
     useEffect(() => {
@@ -64,10 +62,6 @@ export const Locations = ({ modalActive, setModalActive }) => {
         <section className={styles.locations}>
             <div className="container">
                 <h2 className={styles.locations_title}>Locations</h2>
-                <Modal
-                    modalActive={modalActive}
-                    setModalActive={setModalActive} />
-
                 <table>
                     <thead>
                         <tr>
@@ -78,12 +72,6 @@ export const Locations = ({ modalActive, setModalActive }) => {
                     </thead>
                     <tbody>
                         {tableTemplate}
-
-                        {/* {locations && locations.map(items =>
-                        <Location locations={items}
-                            modalActive={modalActive}
-                            setModalActive={setModalActive} />)
-                    } */}
                     </tbody>
                 </table>
 

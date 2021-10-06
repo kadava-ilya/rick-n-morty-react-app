@@ -6,9 +6,8 @@ import { EPISODES_API } from '../../api/api';
 //components
 import styles from './Episodes.module.scss';
 import { Pagination } from "../Pagination/Pagination";
-import { Modal } from '../Modal/Modal'
 
-export const Episodes = ({ modalActive, setModalActive }) => {
+export const Episodes = () => {
 
     const [episodes, setEpisodes] = useState(null);
     const [episodesInfo, setEpisodesInfo] = useState({});
@@ -52,8 +51,7 @@ export const Episodes = ({ modalActive, setModalActive }) => {
     tableTemplate = episodes && episodes.map((row, i) => {
         return <tr
             key={i}
-            className={styles.table_row}
-            onClick={() => setModalActive(true)}> {makeColumns(row)}
+            className={styles.table_row}> {makeColumns(row)}
         </tr >
     })
 
@@ -77,10 +75,6 @@ export const Episodes = ({ modalActive, setModalActive }) => {
                         {tableTemplate}
                     </tbody>
                 </table>
-
-                <Modal
-                    modalActive={modalActive}
-                    setModalActive={setModalActive} />
 
                 <Pagination
                     prev={episodesInfo.prev}

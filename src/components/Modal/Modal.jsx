@@ -10,11 +10,11 @@ export const Modal = ({ modalActive, setModalActive, getPopupInfo }) => {
                     className="modal_close"
                     onClick={() => setModalActive(false)}>&#10006;
                 </div>
-                {/* <img src={getPopupInfo[1]} alt="" />
+                <img src={getPopupInfo[1]} alt="" />
                 <h2>{getPopupInfo[2]}</h2>
                 <h4>Gender: {getPopupInfo[3]}</h4>
                 <h4>Species: {getPopupInfo[4]}</h4>
-                <h4>Status: {getPopupInfo[5]}</h4> */}
+                <h4>Status: {getPopupInfo[5]}</h4>
 
             </div>
         </div>
