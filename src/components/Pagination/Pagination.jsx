@@ -19,7 +19,9 @@ export const Pagination = ({ prev, next, onPrev, onNext, counter, pages }) => {
                 <li className={`${prev} ? ${styles.pagination_item} : ${styles.pagination_notActive}`}>
                     <button
                         className={styles.pagination_link}
-                        onClick={handlePrev}>Prev</button>
+                        onClick={handlePrev}>
+                        <i className="fas fa-chevron-left"></i>
+                    </button>
                 </li>
 
                 {`${counter} / ${pages}`}
@@ -27,7 +29,9 @@ export const Pagination = ({ prev, next, onPrev, onNext, counter, pages }) => {
                 <li className={`${next} ? ${styles.pagination_item} : ${styles.pagination_notActive}`}>
                     <button
                         className={styles.pagination_link}
-                        onClick={handleNext}>Next</button>
+                        onClick={handleNext}>
+                        <i className="fas fa-chevron-right"></i>
+                    </button>
                 </li>
 
             </ul>

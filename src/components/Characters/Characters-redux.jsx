@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { loadCharacters, selectCharacters } from '../../store/slices/charactersSlice'
@@ -7,6 +8,7 @@ import { loadCharacters, selectCharacters } from '../../store/slices/charactersS
 import styles from './Characters.module.scss';
 import { Character } from './Character/Character';
 import { Modal } from '../Modal/Modal'
+import { Pagination } from '../Pagination/Pagination'
 import { useStore } from "react-redux";
 import { changeFilter } from "../../store/slices/filterSLice";
 
@@ -18,6 +20,39 @@ export const CharactersRedux = ({ modalActive, setModalActive }) => {
     const [gender, setGender] = useState('');
     const [status, setStatus] = useState('');
     const [species, setSpecies] = useState('');
+
+    const [characters, setCharacters] = useState(null);
+    const [charInfo, setCharInfo] = useState({});
+    const [charPageCounter, setCharPageCounter] = useState(1);
+
+    //getting characters
+    const fetchCharacters = (url) => {
+        axios(url)
+            .then((data) => {
+                setCharacters(data.data.results);
+                setCharInfo(data.data.info);
+            })
+            .catch((error) => console.log(error));
+    };
+
+    const onPrev = () => {
+        if (charPageCounter > 1) {
+            fetchCharacters(charInfo.prev);
+            setCharPageCounter(charPageCounter - 1);
+        }
+    };
+    const onNext = () => {
+        if (charPageCounter < charInfo.pages) {
+            fetchCharacters(charInfo.next);
+            setCharPageCounter(charPageCounter + 1);
+        }
+    };
+
+    const [getPopupInfo, setGetPopupInfo] = useState([]);
+
+    const getCharInfoModal = (id, img, name, gender, species, status) => {
+        setGetPopupInfo([id, img, name, gender, species, status]);
+    }
 
     const charactersFilter = `/?gender=${gender}&status=${status}&type=${species}`;
 
@@ -67,12 +102,23 @@ export const CharactersRedux = ({ modalActive, setModalActive }) => {
                             key={character.id}
                             character={character}
                             setModalActive={setModalActive}
-                        />)}
+                            getCharInfoModal={getCharInfoModal}
+                        />)
+                    }
                 </div>
 
                 <Modal
                     modalActive={modalActive}
-                    setModalActive={setModalActive} />
+                    setModalActive={setModalActive}
+                    getPopupInfo={getPopupInfo} />
+
+                <Pagination
+                    prev={charInfo.prev}
+                    next={charInfo.next}
+                    onPrev={onPrev}
+                    onNext={onNext}
+                    pages={charInfo.pages}
+                    counter={charPageCounter} />
             </div>
         </section>
     )

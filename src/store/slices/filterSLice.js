@@ -21,6 +21,6 @@ export const { save } = filterSlice.actions;
 export const selectFilter = (state) => state.filter;
 export const changeFilter = (dispatch, data) => {
   dispatch(save(data));
-  //   loadCharacters(dispatch);
+  loadCharacters(dispatch);
 };
 export default filterSlice.reducer;
