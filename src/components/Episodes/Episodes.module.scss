@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .episodes {
   position: relative;
@@ -16,6 +17,28 @@
     text-transform: uppercase;
     font-weight: 700;
   }
+
+  &_search {
+    min-width: 400px;
+    @include df(space-between, center);
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+
+  &_searchTitle {
+    font-size: 20px;
+  }
+
+  &_searchForm {
+    min-width: 300px;
+    min-height: 40px;
+    padding: 5px 10px;
+    outline: none;
+    font-size: 17px;
+    background-color: transparent;
+    border: $card-border;
+    border-radius: 15px;
+  }
 }
 
 table {
@@ -31,7 +54,7 @@ table {
 }
 
 .table_row {
-  height: 30px;
+  height: 40px;
   &:hover {
     background-color: $table-row-hover-bgc;
   }

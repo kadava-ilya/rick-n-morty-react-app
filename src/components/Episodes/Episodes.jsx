@@ -1,40 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-import { EPISODES_API } from '../../api/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectEpisodes, loadEpisodes } from '../../store/slices/episodesSlice'
+import { Pagination } from '../Pagination/Pagination';
+import { Preloader } from '../Preloader/Preloader';
 
-//components
+//styles
 import styles from './Episodes.module.scss';
-import { Pagination } from "../Pagination/Pagination";
+import { SearchFormEpisodes } from './SearchFormEpisodes';
 
 export const Episodes = () => {
 
-    const [episodes, setEpisodes] = useState(null);
-    const [episodesInfo, setEpisodesInfo] = useState({});
-    const [episodeCounter, setEpisodeCounter] = useState(1);
+    const dispatch = useDispatch();
 
-    //getting episodes
-    const fetchEpisodes = (url) => {
-        axios(url)
-            .then(data => {
-                setEpisodes(data.data.results);
-                setEpisodesInfo(data.data.info);
-            })
-            .catch((error) => console.log(error));
-    };
+    const { loading, data } = useSelector(selectEpisodes);
+
+    const [page, setPage] = useState(1);
+    const [nameFilter, setNameFilter] = useState('');
 
     const onPrev = () => {
-        if (episodeCounter > 1) {
-            fetchEpisodes(episodesInfo.prev);
-            setEpisodeCounter(episodeCounter - 1);
-        }
+        setPage(page - 1)
     };
     const onNext = () => {
-        if (episodeCounter < episodesInfo.pages) {
-            fetchEpisodes(episodesInfo.next);
-            setEpisodeCounter(episodeCounter + 1);
-        }
+        setPage(page + 1)
     };
+
+    const episodesFilter = `/?page=${page}&name=${nameFilter}`
+
+    useEffect(() => {
+        loadEpisodes(dispatch, episodesFilter);
+    }, [episodesFilter])
+
+    if (loading) {
+        return <Preloader />
+    }
 
     let tableTemplate;
 
@@ -48,21 +47,22 @@ export const Episodes = () => {
         )
     }
 
-    tableTemplate = episodes && episodes.map((row, i) => {
+    tableTemplate = data && data.results.map((row, i) => {
         return <tr
             key={i}
-            className={styles.table_row}> {makeColumns(row)}
+            className={styles.table_row}>
+            {makeColumns(row)}
         </tr >
     })
 
-    useEffect(() => {
-        fetchEpisodes(EPISODES_API);
-    }, []);
 
     return (
         <section className={styles.episodes}>
             <div className="container">
                 <div className={styles.episodes_title}>Episodes</div>
+                <SearchFormEpisodes
+                    nameFilter={nameFilter}
+                    setNameFilter={setNameFilter} />
                 <table>
                     <thead>
                         <tr>
@@ -75,15 +75,11 @@ export const Episodes = () => {
                         {tableTemplate}
                     </tbody>
                 </table>
-
                 <Pagination
-                    prev={episodesInfo.prev}
-                    next={episodesInfo.next}
                     onPrev={onPrev}
                     onNext={onNext}
-                    pages={episodesInfo.pages}
-                    counter={episodeCounter} />
-
+                    pages={data && data.info.pages}
+                    counter={page} />
             </div>
         </section>
     )

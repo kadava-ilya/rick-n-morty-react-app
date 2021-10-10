@@ -19,10 +19,10 @@ const locationsSlice = createSlice({
 
 const { loading, locations } = locationsSlice.actions;
 
-export const loadLocations = (dispatch) => {
+export const loadLocations = (dispatch, filters) => {
   dispatch(loading());
 
-  const promises = [getLocations()];
+  const promises = [getLocations(filters)];
 
   return Promise.all(promises).then((list) => {
     dispatch(locations(list[0]));

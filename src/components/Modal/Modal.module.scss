@@ -19,6 +19,12 @@
     right: 20px;
     top: 15px;
     cursor: pointer;
+    font-size: 50px;
+    transition: all 0.15s linear;
+
+    &:hover {
+      color: rgb(60, 255, 0);
+    }
   }
 
   &_charImg {
@@ -46,7 +52,7 @@
 .modal_active {
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;

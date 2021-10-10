@@ -1,4 +1,5 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .locations {
   position: relative;
@@ -16,6 +17,33 @@
     text-transform: uppercase;
     font-weight: 700;
   }
+
+  &_search {
+    @include df(space-between, center);
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+
+  &_searchTitle {
+    font-size: 20px;
+  }
+
+  &_searchBlock {
+    min-width: 800px;
+    @include df(space-between, center);
+  }
+
+  &_searchForm {
+    min-width: 200px;
+    min-height: 40px;
+    padding: 5px 10px;
+    margin: 0 auto;
+    outline: none;
+    font-size: 17px;
+    background-color: transparent;
+    border: $card-border;
+    border-radius: 15px;
+  }
 }
 
 table {
@@ -25,13 +53,13 @@ table {
 
   thead {
     width: 100%;
-    min-height: 40px;
     background-color: rgba(38, 255, 0, 0.6);
+    line-height: 40px;
   }
 }
 
 .table_row {
-  height: 30px;
+  height: 40px;
   &:hover {
     background-color: $table-row-hover-bgc;
   }

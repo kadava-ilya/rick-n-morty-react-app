@@ -19,10 +19,10 @@ const episodesSlice = createSlice({
 
 const { loading, episodes } = episodesSlice.actions;
 
-export const loadEpisodes = (dispatch) => {
+export const loadEpisodes = (dispatch, filters) => {
   dispatch(loading());
 
-  const promises = [getEpisodes()];
+  const promises = [getEpisodes(filters)];
 
   return Promise.all(promises).then((list) => {
     dispatch(episodes(list[0]));

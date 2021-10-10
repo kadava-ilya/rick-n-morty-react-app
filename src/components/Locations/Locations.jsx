@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { LOCATIONS_API } from '../../api/api'
+import { selectLocations, loadLocations } from '../../store/slices/locationsSlice'
 
 import styles from './Locations.module.scss'
-import { Pagination } from '../Pagination/Pagination'
-
+import { Preloader } from '../Preloader/Preloader';
+import { Pagination } from '../Pagination/Pagination';
+import { SearchFormLocations } from './SearchFormLocations';
 
 export const Locations = () => {
 
-    const [locations, setLocations] = useState(null);
-    const [locationsInfo, setLocationsInfo] = useState({});
-    const [locationsCounter, setLocationsCounter] = useState(1);
+    const dispatch = useDispatch();
+    const { loading, data } = useSelector(selectLocations);
 
-    const fetchLocations = (url) => {
-        axios(url)
-            .then(data => {
-                setLocations(data.data.results);
-                setLocationsInfo(data.data.info);
-            })
-            .catch((error) => console.log(error));
-    };
+    const [page, setPage] = useState(1)
+    const [nameFilter, setNameFilter] = useState('');
+    const [typeFilter, setTypeFilter] = useState('');
+    const [dimensionFilter, setDimensionFilter] = useState('');
 
     const onPrev = () => {
-        if (locationsCounter > 1) {
-            fetchLocations(locationsInfo.prev);
-            setLocationsCounter(locationsCounter - 1);
-        }
+        setPage(page - 1)
     };
     const onNext = () => {
-        if (locationsCounter < locationsInfo.pages) {
-            fetchLocations(locationsInfo.next);
-            setLocationsCounter(locationsCounter + 1);
-        }
+        setPage(page + 1)
     };
+
+    const locationsFilter = `/?page=${page}&name=${nameFilter}&type=${typeFilter}&dimension=${dimensionFilter}`
+
+    useEffect(() => {
+        loadLocations(dispatch, locationsFilter);
+    }, [locationsFilter]);
+
+    if (loading) {
+        return <Preloader />
+    }
 
     let tableTemplate;
 
@@ -42,47 +42,49 @@ export const Locations = () => {
             [
                 <td className={styles.table_row_item}>{row.id} </td>,
                 <td className={styles.table_row_item}>{row.name} </td>,
-                <td className={styles.table_row_item}>{row.type} </td>
+                <td className={styles.table_row_item}>{row.type} </td>,
+                <td className={styles.table_row_item}>{row.dimension} </td>
             ]
         )
     }
 
-
-    tableTemplate = locations && locations.map((row, i) => {
+    tableTemplate = data && data.results.map((row, i) => {
         return <tr
             key={i}
-            className={styles.table_row}>{makeColumns(row)}</tr>
+            className={styles.table_row}>
+            {makeColumns(row)}</tr>
     })
-
-    useEffect(() => {
-        fetchLocations(LOCATIONS_API);
-    }, []);
 
     return (
         <section className={styles.locations}>
             <div className="container">
                 <h2 className={styles.locations_title}>Locations</h2>
+                <SearchFormLocations
+                    nameFilter={nameFilter}
+                    setNameFilter={setNameFilter}
+                    typeFilter={typeFilter}
+                    setTypeFilter={setTypeFilter}
+                    dimensionFilter={dimensionFilter}
+                    setDimensionFilter={setDimensionFilter} />
                 <table>
                     <thead>
                         <tr>
                             <th>№</th>
                             <th>Name</th>
                             <th>Type</th>
+                            <th>Dimension</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tableTemplate}
                     </tbody>
                 </table>
-
+                <Pagination
+                    onPrev={onPrev}
+                    onNext={onNext}
+                    pages={data && data.info.pages}
+                    counter={page} />
             </div>
-            <Pagination
-                prev={locationsInfo.prev}
-                next={locationsInfo.next}
-                onPrev={onPrev}
-                onNext={onNext}
-                pages={locationsInfo.pages}
-                counter={locationsCounter} />
         </section>
     )
 }

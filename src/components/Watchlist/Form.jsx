@@ -11,10 +11,11 @@ const Form = ({ todo, change, submit, error }) => {
                     type="text"
                     value={todo}
                     maxlength="40"
-                    onChange={change} />
+                    onChange={change}
+                    placeholder="Series to watch" />
                 {error && <small className={styles.small}>{error}</small>}
                 <button className={styles.form_btn} type='submit'>
-                    Add Todo
+                    Add
                 </button>
             </div>
         </form>
