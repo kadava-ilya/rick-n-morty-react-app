@@ -12,7 +12,8 @@ export const SearchFormEpisodes = ({ nameFilter, setNameFilter }) => {
                 type="text"
                 placeholder="Name"
                 value={nameFilter}
-                onInput={(e) => setNameFilter(e.target.value)} />
+                onInput={(e) => setNameFilter(e.target.value)}
+            />
         </div>
     )
 }
